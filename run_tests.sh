@@ -32,6 +32,7 @@ find tests -mindepth 1 -maxdepth 1 -type d -print0 | while IFS= read -r -d $'\0'
       echo "java program crashed for test $test_name:"
       echo "$output"
       test_result="CRASHED"
+      exit 1
     else
       diff -Bw <(cat "$output_file") <(echo "$output") > diff.txt
       if [ -s diff.txt ]; then
